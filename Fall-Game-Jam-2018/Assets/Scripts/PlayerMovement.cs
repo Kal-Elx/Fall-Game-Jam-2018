@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,17 +7,29 @@ public class PlayerMovement : MonoBehaviour {
 
    
     public float speed;
+
+    //Dash public variables
     public float dashSpeed;
     public float DashCooldownLength;
     public float DashDurationLength = 1.0f;
 
+    // Stop public variables
+    public GameObject Opponent;
+ 
+    public float StopCooldownLength;
+    public float StopDurationLength = 1.0f;
+
     private Rigidbody rb;
     private Vector3 playerOldPosition, playerOldVelocity, playerOldAngularVelocity;
+    private Vector3 playerStopVelocity, playerStopAngularVelocity;
     private bool isPlayerOldPositionSet = false;
     
     //counters, updated every tick
     private float DashCooldown = 0.0f;
     private float DashDuration = 0;
+    private float StopCooldown = 0.0f;
+    public float StopDuration = 0;
+    public bool Stopped = false;
 
     //TimeBased events
     private void Start()
@@ -29,25 +42,40 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Update()
     {
-        UpdateDash();
+
+        UpdateStopAbility();
+        if (!Stopped)
+        {
+            UpdateDash();
+        }
     }
 
     private void FixedUpdate()
     {
-        //Input handling
-        float moveHorizontal = Input.GetAxis("Horizontal " + gameObject.name);
-        float moveVertical = Input.GetAxis("Vertical "+gameObject.name );
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        rb.AddForce(movement * speed);
 
-        if (Input.GetButtonDown("Fire1 "+ gameObject.name))
+        if (!Stopped)
         {
-            TimeTravelAbility();
+            //Input handling
+            float moveHorizontal = Input.GetAxis("Horizontal " + gameObject.name);
+            float moveVertical = Input.GetAxis("Vertical " + gameObject.name);
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            rb.AddForce(movement * speed);
+
+            if (Input.GetButtonDown("Fire1 " + gameObject.name))
+            {
+                TimeTravelAbility();
+            }
+            if (Input.GetButtonDown("Fire2 " + gameObject.name))
+            {
+                DashAbility();
+            }
+
+            if (Input.GetButtonDown("Fire3 " + gameObject.name))
+            {
+                StopAbility();
+            }
         }
-        if (Input.GetButtonDown("Fire2 "+ gameObject.name))
-        {
-            DashAbility();
-        }
+
     }
 
     //Abilities
@@ -58,10 +86,13 @@ public class PlayerMovement : MonoBehaviour {
             float moveHorizontal = Input.GetAxis("Horizontal " + gameObject.name);
             float moveVertical = Input.GetAxis("Vertical " + gameObject.name);
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
- 
-            rb.velocity += movement * dashSpeed;
-            DashCooldown = DashCooldownLength;
-            DashDuration = DashDurationLength;
+
+            if (!movement.Equals(Vector3.zero))
+            {
+                rb.velocity += movement * dashSpeed;
+                DashCooldown = DashCooldownLength;
+                DashDuration = DashDurationLength;
+            }
         }
     }
 
@@ -86,6 +117,12 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
     }
+
+    private void StopAbility()
+    {
+        Opponent.GetComponent<PlayerMovement>().stop();
+    }
+
 
     // Updates to the abilities
     private void UpdateDash()
@@ -119,5 +156,32 @@ public class PlayerMovement : MonoBehaviour {
                 DashCooldown = 0;
             }
         }
+    }
+    private void UpdateStopAbility()
+    {
+        if (StopDuration > 0)
+        {
+            StopDuration -= Time.deltaTime;
+
+            // If end of stop
+            if (StopDuration <= 0)
+                unStop();
+            {
+            }
+        }
+    }
+
+    public void stop()
+    {
+        Stopped = true;
+        rb.isKinematic=true;
+        StopDuration = StopDurationLength;
+    }
+
+    private void unStop() {
+
+        Stopped = false;
+        StopDuration = 0;
+        rb.isKinematic = false;
     }
 }

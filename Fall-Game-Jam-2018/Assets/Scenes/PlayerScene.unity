@@ -194,9 +194,39 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e3a59d2d9ff0cee49bd285f9ed607ee8, type: 2}
+    - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: dashSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: DashCooldownLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: DashDurationLength
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: Opponent
+      value: 
+      objectReference: {fileID: 623131760}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151d1b29b1b6fbf499d2d167221272be, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &409474398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1852175449749866, guid: 151d1b29b1b6fbf499d2d167221272be,
+    type: 2}
+  m_PrefabInternal: {fileID: 409474397}
 --- !u!1001 &623131759
 Prefab:
   m_ObjectHideFlags: 0
@@ -245,9 +275,39 @@ Prefab:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 127809160}
+    - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: dashSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: DashCooldownLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: DashDurationLength
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: Opponent
+      value: 
+      objectReference: {fileID: 409474398}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151d1b29b1b6fbf499d2d167221272be, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &623131760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1852175449749866, guid: 151d1b29b1b6fbf499d2d167221272be,
+    type: 2}
+  m_PrefabInternal: {fileID: 623131759}
 --- !u!1 &1778136612
 GameObject:
   m_ObjectHideFlags: 0
