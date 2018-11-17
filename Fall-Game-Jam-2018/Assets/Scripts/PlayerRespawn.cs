@@ -26,12 +26,16 @@ public class PlayerRespawn : MonoBehaviour {
 
     private void FixedUpdate()
     {
+    
+    }
+    private void LateUpdate()
+    {
         if (playerDied)
         {
             rb.MovePosition(spawnPoint.position);
-            rb.velocity=new Vector3(0, 0, 0);
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             playerDied = false;
         }
-
     }
 }

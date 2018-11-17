@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     public float DashDurationLength = 1.0f;
 
     private Rigidbody rb;
-    private Vector3 playerOldPosition, playerOldVelocity;
+    private Vector3 playerOldPosition, playerOldVelocity, playerOldAngularVelocity;
     private bool isPlayerOldPositionSet = false;
     private float DashCooldown = 0.0f;
     private float DashDuration = 0;
@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         playerOldPosition = rb.position;
         playerOldVelocity = rb.velocity;
+        playerOldAngularVelocity = rb.angularVelocity;
     }
 
     private void Update()
@@ -84,7 +85,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 playerOldPosition = rb.position;
                 playerOldVelocity = rb.velocity;
-
+                playerOldAngularVelocity = rb.angularVelocity;
                 isPlayerOldPositionSet = true;
 
             }
@@ -92,6 +93,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 rb.MovePosition(playerOldPosition);
                 rb.velocity = playerOldVelocity;
+                rb.angularVelocity = playerOldAngularVelocity;
                 isPlayerOldPositionSet = false;
             }
         }
