@@ -26,7 +26,7 @@ public class ButtonHandler : MonoBehaviour {
                 arenaScene = "SimpleArenaScene";
                 break;
             case 1:
-                arenaScene = "SimpleArenaScene";
+                arenaScene = "RotatingArenaScene";
                 break;
             case 2:
                 arenaScene = "SimpleArenaScene";
