@@ -18,11 +18,13 @@ public class PowerUpSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        spawnCooldown -= Time.deltaTime;
-        if (spawnCooldown <= 0.0f)
-        {
-            powerup.SetActive(true);
-            spawnCooldown = getCooldownTime();
+        if (!powerup.activeSelf) {
+            spawnCooldown -= Time.deltaTime;
+            if (spawnCooldown <= 0.0f)
+            {
+                powerup.SetActive(true);
+                spawnCooldown = getCooldownTime();
+            }
         }
 	}
 
