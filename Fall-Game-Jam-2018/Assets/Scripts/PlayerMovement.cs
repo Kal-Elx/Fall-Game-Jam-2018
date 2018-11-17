@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
 
-   
+    public Slider powerupSlider;
     public float speed;
 
     //Dash public variables
@@ -31,6 +32,8 @@ public class PlayerMovement : MonoBehaviour {
     public float StopDuration = 0;
     public bool Stopped = false;
 
+    private int powerupCounter;
+
     //TimeBased events
     private void Start()
     {
@@ -38,6 +41,7 @@ public class PlayerMovement : MonoBehaviour {
         playerOldPosition = rb.position;
         playerOldVelocity = rb.velocity;
         playerOldAngularVelocity = rb.angularVelocity;
+        powerupCounter = 0;
     }
 
     private void Update()
@@ -183,5 +187,35 @@ public class PlayerMovement : MonoBehaviour {
         Stopped = false;
         StopDuration = 0;
         rb.isKinematic = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUp"))
+        {
+            other.gameObject.SetActive(false);
+            powerUpCollected();
+        }
+    }
+
+    private void powerUpCollected()
+    {
+        if (powerupCounter <= 10)
+        {
+            ++powerupCounter;
+            ++powerupSlider.value;
+        }
+    }
+
+    private bool powerUpUsed()
+    {
+        if (powerupCounter > 0)
+        {
+            --powerupCounter;
+            --powerupSlider.value;
+            return true;
+        }
+        else
+            return false;
     }
 }
