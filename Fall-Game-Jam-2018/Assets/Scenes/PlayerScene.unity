@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a07fadb24ea940240afba3afc1a692cc, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.05339195, g: 0.15094897, b: 0.19478199, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -193,7 +193,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e3a59d2d9ff0cee49bd285f9ed607ee8, type: 2}
+      objectReference: {fileID: 2100000, guid: bf062c6860930d847a78328de691d93e, type: 2}
     - target: {fileID: 114121892725323954, guid: 151d1b29b1b6fbf499d2d167221272be,
         type: 2}
       propertyPath: speed
@@ -300,6 +300,11 @@ Prefab:
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 409474398}
+    - target: {fileID: 23127327301932192, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be3afd193614bc44399bf7558d986a66, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151d1b29b1b6fbf499d2d167221272be, type: 2}
   m_IsPrefabAsset: 0
