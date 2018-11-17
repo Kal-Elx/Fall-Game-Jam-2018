@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SimpleArenaScene.unity
     guid: 9c281d44aa61ca54aad65f3290492b2d
+  - enabled: 1
+    path: Assets/Scenes/RotatingArenaScene.unity
+    guid: 81852c64805d29d4eac0d2bb9390fd3b
   m_configObjects: {}
