@@ -304,7 +304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  isPlayerOldPositionSet: 0
+  dashSpeed: 20
+  DashCooldownLength: 2
+  DashDurationLength: 0.1
 --- !u!1 &2044291689
 GameObject:
   m_ObjectHideFlags: 0
