@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour {
     public float StopDuration = 0;
     public bool Stopped = false;
 
+    private int powerupCounter;
+
     //TimeBased events
     private void Start()
     {
@@ -38,6 +40,7 @@ public class PlayerMovement : MonoBehaviour {
         playerOldPosition = rb.position;
         playerOldVelocity = rb.velocity;
         playerOldAngularVelocity = rb.angularVelocity;
+        powerupCounter = 0;
     }
 
     private void Update()
@@ -183,5 +186,14 @@ public class PlayerMovement : MonoBehaviour {
         Stopped = false;
         StopDuration = 0;
         rb.isKinematic = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUp"))
+        {
+            other.gameObject.SetActive(false);
+            ++powerupCounter;
+        }
     }
 }

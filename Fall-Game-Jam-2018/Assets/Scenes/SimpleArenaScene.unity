@@ -202,7 +202,7 @@ Prefab:
     - target: {fileID: 114207620956739662, guid: e82fae90fe2910043b835f7d88efbece,
         type: 2}
       propertyPath: maxTimeBetweenSpan
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e82fae90fe2910043b835f7d88efbece, type: 2}
@@ -254,7 +254,7 @@ Prefab:
     - target: {fileID: 114207620956739662, guid: e82fae90fe2910043b835f7d88efbece,
         type: 2}
       propertyPath: maxTimeBetweenSpan
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1974052793772278, guid: e82fae90fe2910043b835f7d88efbece, type: 2}
       propertyPath: m_Name
@@ -377,7 +377,7 @@ Prefab:
     - target: {fileID: 114207620956739662, guid: e82fae90fe2910043b835f7d88efbece,
         type: 2}
       propertyPath: maxTimeBetweenSpan
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1974052793772278, guid: e82fae90fe2910043b835f7d88efbece, type: 2}
       propertyPath: m_Name
@@ -579,7 +579,7 @@ Prefab:
     - target: {fileID: 114207620956739662, guid: e82fae90fe2910043b835f7d88efbece,
         type: 2}
       propertyPath: maxTimeBetweenSpan
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1974052793772278, guid: e82fae90fe2910043b835f7d88efbece, type: 2}
       propertyPath: m_Name
@@ -729,7 +729,7 @@ Prefab:
     - target: {fileID: 114207620956739662, guid: e82fae90fe2910043b835f7d88efbece,
         type: 2}
       propertyPath: maxTimeBetweenSpan
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1974052793772278, guid: e82fae90fe2910043b835f7d88efbece, type: 2}
       propertyPath: m_Name
@@ -1032,7 +1032,7 @@ Prefab:
     - target: {fileID: 114207620956739662, guid: e82fae90fe2910043b835f7d88efbece,
         type: 2}
       propertyPath: maxTimeBetweenSpan
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1974052793772278, guid: e82fae90fe2910043b835f7d88efbece, type: 2}
       propertyPath: m_Name
@@ -1180,7 +1180,7 @@ Prefab:
     - target: {fileID: 114207620956739662, guid: e82fae90fe2910043b835f7d88efbece,
         type: 2}
       propertyPath: maxTimeBetweenSpan
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1974052793772278, guid: e82fae90fe2910043b835f7d88efbece, type: 2}
       propertyPath: m_Name
@@ -1236,7 +1236,7 @@ Prefab:
     - target: {fileID: 114207620956739662, guid: e82fae90fe2910043b835f7d88efbece,
         type: 2}
       propertyPath: maxTimeBetweenSpan
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1974052793772278, guid: e82fae90fe2910043b835f7d88efbece, type: 2}
       propertyPath: m_Name
@@ -1334,7 +1334,7 @@ Prefab:
     - target: {fileID: 114207620956739662, guid: e82fae90fe2910043b835f7d88efbece,
         type: 2}
       propertyPath: maxTimeBetweenSpan
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1974052793772278, guid: e82fae90fe2910043b835f7d88efbece, type: 2}
       propertyPath: m_Name
