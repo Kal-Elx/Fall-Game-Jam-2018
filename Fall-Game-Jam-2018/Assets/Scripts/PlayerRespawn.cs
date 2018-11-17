@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerRespawn : MonoBehaviour {
 
     public Transform spawnPoint;
+    public int Deaths = 0;
+    private static int DEATHS_TO_WIN = 5;
+    private GameObject Opponent;
 
     private Rigidbody rb;
     private bool playerDied;
@@ -12,6 +15,7 @@ public class PlayerRespawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Opponent = GetComponent<PlayerMovement>().Opponent;
         rb = GetComponent<Rigidbody>();
     }
 	
@@ -21,7 +25,10 @@ public class PlayerRespawn : MonoBehaviour {
         {
             playerDied = true;
         }
-
+        if (Deaths == DEATHS_TO_WIN)
+        {
+            Opponent.GetComponent<PlayerRespawn>().Win();
+        }
     }
 
     private void FixedUpdate()
@@ -32,10 +39,19 @@ public class PlayerRespawn : MonoBehaviour {
     {
         if (playerDied)
         {
+            gameObject.GetComponent<PlayerMovement>().emptyPowerUp();
             rb.MovePosition(spawnPoint.position);
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             playerDied = false;
+            Deaths++;
         }
+    }
+
+    public void Win()
+    {
+        Debug.Log(gameObject.name + "Won");
+
+      //TODO: Do stuff when game won   
     }
 }

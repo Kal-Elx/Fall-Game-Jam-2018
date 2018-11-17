@@ -11,14 +11,16 @@ public class PlayerMovement : MonoBehaviour {
 
     //Dash public variables
     public float dashSpeed;
-    public float DashCooldownLength;
+    public float DashCooldownLength = 2;
     public float DashDurationLength = 1.0f;
 
     // Stop public variables
     public GameObject Opponent;
- 
-    public float StopCooldownLength;
+    public float StopCooldownLength = 2;
     public float StopDurationLength = 1.0f;
+
+    //TimeAbility public variables
+    public float TimeCooldownLength = 2;
 
     private Rigidbody rb;
     private Vector3 playerOldPosition, playerOldVelocity, playerOldAngularVelocity;
@@ -27,12 +29,18 @@ public class PlayerMovement : MonoBehaviour {
     
     //counters, updated every tick
     private float DashCooldown = 0.0f;
-    private float DashDuration = 0;
+    private float DashDuration = 0.0f;
     private float StopCooldown = 0.0f;
-    public float StopDuration = 0;
-    public bool Stopped = false;
+    private float StopDuration = 0.0f;
+    private float TimeCoolDown = 0.0f;
 
     private int powerupCounter;
+
+
+    private bool Stopped = false;
+
+
+    
 
     //TimeBased events
     private void Start()
@@ -48,10 +56,8 @@ public class PlayerMovement : MonoBehaviour {
     {
 
         UpdateStopAbility();
-        if (!Stopped)
-        {
-            UpdateDash();
-        }
+        UpdateTimeAbility();
+        UpdateDash();
     }
 
     private void FixedUpdate()
@@ -85,7 +91,7 @@ public class PlayerMovement : MonoBehaviour {
     //Abilities
     private void DashAbility()
     {
-        if (DashCooldown == 0.0f)
+        if (DashCooldown <= 0.0f && ableToUsePowerUp())
         {
             float moveHorizontal = Input.GetAxis("Horizontal " + gameObject.name);
             float moveVertical = Input.GetAxis("Vertical " + gameObject.name);
@@ -112,8 +118,9 @@ public class PlayerMovement : MonoBehaviour {
                 isPlayerOldPositionSet = true;
 
             }
-            else
+            else if (TimeCoolDown <= 0.0f && ableToUsePowerUp())
             {
+                TimeCoolDown = TimeCooldownLength;
                 rb.MovePosition(playerOldPosition);
                 rb.velocity = playerOldVelocity;
                 rb.angularVelocity = playerOldAngularVelocity;
@@ -124,7 +131,11 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StopAbility()
     {
-        Opponent.GetComponent<PlayerMovement>().stop();
+        if (StopCooldown<=0.0f && ableToUsePowerUp())
+        {
+            StopCooldown = StopCooldownLength;
+            Opponent.GetComponent<PlayerMovement>().stop();
+        }
     }
 
 
@@ -170,7 +181,30 @@ public class PlayerMovement : MonoBehaviour {
             // If end of stop
             if (StopDuration <= 0)
                 unStop();
+
+            if (StopCooldown > 0)
             {
+                StopCooldown -= Time.deltaTime;
+
+                //If Cooldown is over
+                if (StopCooldown < 0)
+                {
+                    StopCooldown = 0;
+                }
+            }
+        }
+    }
+
+    private void UpdateTimeAbility()
+    {
+        if (TimeCoolDown > 0)
+        {
+            TimeCoolDown -= Time.deltaTime;
+
+            //If Cooldown is over
+            if (TimeCoolDown < 0)
+            {
+                TimeCoolDown = 0;
             }
         }
     }
@@ -207,7 +241,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    private bool powerUpUsed()
+    private bool ableToUsePowerUp()
     {
         if (powerupCounter > 0)
         {
@@ -216,6 +250,17 @@ public class PlayerMovement : MonoBehaviour {
             return true;
         }
         else
+        {
             return false;
+        }    
     }
+
+    public void emptyPowerUp()
+    {
+        while (ableToUsePowerUp())
+        {
+            //a hacky way to empty the power up meter, maybe fix later
+        }
+    }
+
 }
