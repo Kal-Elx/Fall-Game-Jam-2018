@@ -3321,18 +3321,7 @@ Prefab:
     - target: {fileID: 114510313000420966, guid: ef597044ca138ff4abbcdbfaa4a8c3d7,
         type: 2}
       propertyPath: m_text
-      value: 'PLAYER 1 (Silver)
-
-        Move: Arrows
-
-        Time travel: ,
-
-        Dash: .
-
-        Freeze: -
-
-
-        PLAYER 2 (Gold)
+      value: 'PLAYER 1 (Gold)
 
         Move: W, A, S, D
 
@@ -3341,6 +3330,17 @@ Prefab:
         Dash: V
 
         Freeze: B
+
+
+        PLAYER 2 (Silver)
+
+        Move: Arrows
+
+        Time travel: ,
+
+        Dash: .
+
+        Freeze: -
 
 
         Exit game: Escape

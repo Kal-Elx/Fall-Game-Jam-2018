@@ -106,9 +106,9 @@ public class PlayerRespawn : MonoBehaviour {
     {
         string player;
         if (gameObject.name.Contains("1"))
-            player = "Player 1";
-        else
             player = "Player 2";
+        else
+            player = "Player 1";
         winText.SetText(player + " won the battle");
         gameOver = true;
     }
