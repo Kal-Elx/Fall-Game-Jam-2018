@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerRespawn : MonoBehaviour {
 
@@ -29,6 +30,10 @@ public class PlayerRespawn : MonoBehaviour {
         {
             Opponent.GetComponent<PlayerRespawn>().Win();
         }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            BackToMainMenu();
+        }
     }
 
     private void FixedUpdate()
@@ -53,5 +58,10 @@ public class PlayerRespawn : MonoBehaviour {
         Debug.Log(gameObject.name + "Won");
 
       //TODO: Do stuff when game won   
+    }
+
+    private void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 }
