@@ -23,6 +23,10 @@ public class PlayerMovement : MonoBehaviour {
     //TimeAbility public variables
     public float TimeCooldownLength = 2;
 
+    public Slider timetravelSlider;
+    public Slider dashSlider;
+    public Slider freezeSlider;
+
     private Rigidbody rb;
     private Vector3 playerOldPosition, playerOldVelocity, playerOldAngularVelocity;
     private Vector3 playerStopVelocity, playerStopAngularVelocity;
@@ -178,6 +182,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 DashCooldown = 0;
             }
+            dashSlider.value = 2 - DashCooldown;
         }
     }
     private void UpdateStopAbility()
@@ -200,6 +205,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 StopCooldown = 0;
             }
+            freezeSlider.value = 2 - StopCooldown;
         }
 
     }
@@ -215,6 +221,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 TimeCoolDown = 0;
             }
+            timetravelSlider.value = 2 - TimeCoolDown;
         }
     }
 
