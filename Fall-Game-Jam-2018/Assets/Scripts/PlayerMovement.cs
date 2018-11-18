@@ -7,47 +7,53 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public Slider powerupSlider;
+
+    //Public Variables
     public float speed;
 
-    //Dash public variables
+    //Dash variables
     public float dashSpeed;
     public float DashCooldownLength = 2;
     public float DashDurationLength = 1.0f;
 
-    // Stop public variables
+    // Stop variables
     public GameObject Opponent;
     public float StopCooldownLength = 2;
     public float StopDurationLength = 1.0f;
 
-    //TimeAbility public variables
+    //TimeAbility variables
     public float TimeCooldownLength = 2;
 
+    //Sliders
+    public Slider powerupSlider;
     public Slider timetravelSlider;
     public Slider dashSlider;
     public Slider freezeSlider;
 
+
+    //Private variables
     private Rigidbody rb;
-    private Vector3 playerOldPosition, playerOldVelocity, playerOldAngularVelocity;
-    private Vector3 playerStopVelocity, playerStopAngularVelocity;
-    private bool isPlayerOldPositionSet = false;
-    
-    //counters, updated every tick
-    private float DashCooldown = 0.0f;
-    private float DashDuration = 0.0f;
-    private float StopCooldown = 0.0f;
-    private float StopDuration = 0.0f;
-    private float TimeCoolDown = 0.0f;
-
-    private int powerupCounter;
-
-
-    private bool Stopped = false;
     private AudioSource[] audioSource;
 
+    //Timetravel variables
+    private Vector3 playerOldPosition, playerOldVelocity, playerOldAngularVelocity;
+    private bool isPlayerOldPositionSet = false;
+    
+    //counters for abilites, updated every tick
+    //Cooldowns
+    private float DashCooldown = 0.0f;
+    private float TimeCoolDown = 0.0f;
+    private float StopCooldown = 0.0f;
 
+    //Durations
+    private float DashDuration = 0.0f;
+    private float StopDuration = 0.0f;
+    
+    // counter for the powerup meter;
+    private int powerupCounter;
 
-
+    private bool Stopped = false;
+   
     //TimeBased events
     private void Start()
     {
@@ -133,7 +139,6 @@ public class PlayerMovement : MonoBehaviour {
             }
             else if (TimeCoolDown <= 0.0f && ableToUsePowerUp())
             {
-
                 audioSource[5].Play();
                 TimeCoolDown = TimeCooldownLength;
                 rb.MovePosition(playerOldPosition);
