@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -58,6 +59,10 @@ public class PlayerMovement : MonoBehaviour {
         UpdateStopAbility();
         UpdateTimeAbility();
         UpdateDash();
+
+        if (Input.GetKey(KeyCode.Escape)) {
+            SceneManager.LoadScene("MenuScene");
+        }
     }
 
     private void FixedUpdate()

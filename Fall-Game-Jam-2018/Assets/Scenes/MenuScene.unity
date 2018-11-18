@@ -1700,7 +1700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -418.7}
+  m_AnchoredPosition: {x: 0, y: -482}
   m_SizeDelta: {x: 460, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918031711
@@ -3196,7 +3196,7 @@ Prefab:
     - target: {fileID: 114510313000420966, guid: ef597044ca138ff4abbcdbfaa4a8c3d7,
         type: 2}
       propertyPath: m_text
-      value: 'PLAYER 1
+      value: 'PLAYER 1 (Silver)
 
         Move: Arrows
 
@@ -3207,7 +3207,7 @@ Prefab:
         Freeze: -
 
 
-        PLAYER 2
+        PLAYER 2 (Gold)
 
         Move: W, A, S, D
 
@@ -3216,6 +3216,9 @@ Prefab:
         Dash: V
 
         Freeze: B
+
+
+        Exit game: Escape
 
 
         Created by: Kal-Elx & SteBry
