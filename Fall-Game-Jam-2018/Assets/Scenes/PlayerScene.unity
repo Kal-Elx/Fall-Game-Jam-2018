@@ -549,6 +549,11 @@ Prefab:
       propertyPath: life5
       value: 
       objectReference: {fileID: 415421975}
+    - target: {fileID: 135076160643608424, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151d1b29b1b6fbf499d2d167221272be, type: 2}
   m_IsPrefabAsset: 0
@@ -1194,6 +1199,11 @@ Prefab:
       propertyPath: life5
       value: 
       objectReference: {fileID: 577712955}
+    - target: {fileID: 135076160643608424, guid: 151d1b29b1b6fbf499d2d167221272be,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151d1b29b1b6fbf499d2d167221272be, type: 2}
   m_IsPrefabAsset: 0

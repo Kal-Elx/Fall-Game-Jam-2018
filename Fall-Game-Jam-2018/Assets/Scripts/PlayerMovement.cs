@@ -39,9 +39,10 @@ public class PlayerMovement : MonoBehaviour {
 
 
     private bool Stopped = false;
+    private AudioSource[] audioSource;
 
 
-    
+
 
     //TimeBased events
     private void Start()
@@ -51,6 +52,8 @@ public class PlayerMovement : MonoBehaviour {
         playerOldVelocity = rb.velocity;
         playerOldAngularVelocity = rb.angularVelocity;
         powerupCounter = 0;
+        audioSource = GetComponents<AudioSource>();
+
     }
 
     private void Update()
@@ -233,10 +236,22 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (other.CompareTag("PowerUp"))
         {
+            audioSource[2].Play();
             other.gameObject.SetActive(false);
             powerUpCollected();
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            audioSource[1].Play();
+        
+        }
+    }
+
+
 
     private void powerUpCollected()
     {
