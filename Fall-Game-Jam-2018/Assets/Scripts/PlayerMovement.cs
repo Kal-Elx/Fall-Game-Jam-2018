@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour {
 
             if (Input.GetButtonDown("Fire1 " + gameObject.name))
             {
-                if(TimeCoolDown<=0 && ableToUsePowerUp())
+                if(TimeCoolDown<=0 && DashCooldown <= 0 && ableToUsePowerUp())
                 {
                     isPlayerOldPositionSet = true;
                     SetTimeTravelPos();
