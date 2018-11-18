@@ -29,7 +29,7 @@ public class ButtonHandler : MonoBehaviour {
                 arenaScene = "RotatingArenaScene";
                 break;
             case 2:
-                arenaScene = "SimpleArenaScene";
+                arenaScene = "HoleArenaScene";
                 break;
         }
     }

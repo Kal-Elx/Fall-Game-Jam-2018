@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RotatingArenaScene.unity
     guid: 81852c64805d29d4eac0d2bb9390fd3b
+  - enabled: 1
+    path: Assets/Scenes/HoleArenaScene.unity
+    guid: be2a0eb719b4d5a45a05238d498df60e
   m_configObjects: {}

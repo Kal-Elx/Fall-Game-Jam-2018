@@ -181,18 +181,19 @@ public class PlayerMovement : MonoBehaviour {
             // If end of stop
             if (StopDuration <= 0)
                 unStop();
+        }
 
-            if (StopCooldown > 0)
+        if (StopCooldown > 0)
+        {
+            StopCooldown -= Time.deltaTime;
+
+            //If Cooldown is over
+            if (StopCooldown < 0)
             {
-                StopCooldown -= Time.deltaTime;
-
-                //If Cooldown is over
-                if (StopCooldown < 0)
-                {
-                    StopCooldown = 0;
-                }
+                StopCooldown = 0;
             }
         }
+
     }
 
     private void UpdateTimeAbility()
