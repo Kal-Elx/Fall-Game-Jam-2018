@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour {
 
 
-    //Public Variables
+ //Public Variables
     public float speed;
 
     //Dash variables
@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
 
     //TimeAbility variables
     public float TimeCooldownLength = 2;
+    public Image lockPosition;
 
     //Sliders
     public Slider powerupSlider;
@@ -31,13 +32,14 @@ public class PlayerMovement : MonoBehaviour {
     public Slider freezeSlider;
 
 
-    //Private variables
+ //Private variables
     private Rigidbody rb;
     private AudioSource[] audioSource;
 
     //Timetravel variables
     private Vector3 playerOldPosition, playerOldVelocity, playerOldAngularVelocity;
     private bool isPlayerOldPositionSet = false;
+    private float TimeSinceLock = 0.0f;
     
     //counters for abilites, updated every tick
     //Cooldowns
@@ -50,25 +52,22 @@ public class PlayerMovement : MonoBehaviour {
     private float StopDuration = 0.0f;
     
     // counter for the powerup meter;
-    private int powerupCounter;
+    private int powerupCounter = 0;
 
     private bool Stopped = false;
    
     //TimeBased events
     private void Start()
     {
+
+        powerUpCollected();
         rb = GetComponent<Rigidbody>();
-        playerOldPosition = rb.position;
-        playerOldVelocity = rb.velocity;
-        playerOldAngularVelocity = rb.angularVelocity;
-        powerupCounter = 0;
         audioSource = GetComponents<AudioSource>();
 
     }
 
     private void Update()
     {
-
         UpdateStopAbility();
         UpdateTimeAbility();
         UpdateDash();
@@ -80,7 +79,6 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
-
         if (!Stopped)
         {
             //Input handling
@@ -91,8 +89,27 @@ public class PlayerMovement : MonoBehaviour {
 
             if (Input.GetButtonDown("Fire1 " + gameObject.name))
             {
-                TimeTravelAbility();
+                if(TimeCoolDown<=0 && ableToUsePowerUp())
+                {
+                    isPlayerOldPositionSet = true;
+                    SetTimeTravelPos();
+                }
+                
+                
+
+                //TimeTravelAbility();
             }
+
+            if (Input.GetButtonUp("Fire1 "+ gameObject.name))
+            {
+                if (isPlayerOldPositionSet)
+                {
+                    TimeTravel();
+                    isPlayerOldPositionSet = false;
+                }
+                
+            }
+
             if (Input.GetButtonDown("Fire2 " + gameObject.name))
             {
                 DashAbility();
@@ -127,7 +144,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void TimeTravelAbility()
     {
-        if (DashDuration == 0)
+        //if (DashDuration <= 0)
         {
             if (!isPlayerOldPositionSet)
             {
@@ -135,7 +152,7 @@ public class PlayerMovement : MonoBehaviour {
                 playerOldVelocity = rb.velocity;
                 playerOldAngularVelocity = rb.angularVelocity;
                 isPlayerOldPositionSet = true;
-
+                lockPosition.gameObject.SetActive(true);
             }
             else if (TimeCoolDown <= 0.0f && ableToUsePowerUp())
             {
@@ -145,8 +162,27 @@ public class PlayerMovement : MonoBehaviour {
                 rb.velocity = playerOldVelocity;
                 rb.angularVelocity = playerOldAngularVelocity;
                 isPlayerOldPositionSet = false;
+                lockPosition.gameObject.SetActive(false);
             }
         }
+    }
+
+    private void SetTimeTravelPos()
+    {
+        playerOldPosition = rb.position;
+        playerOldVelocity = rb.velocity;
+        playerOldAngularVelocity = rb.angularVelocity;
+        lockPosition.gameObject.SetActive(true);
+    }
+
+    private void TimeTravel()
+    {
+        audioSource[5].Play();
+        TimeCoolDown = TimeCooldownLength;
+        rb.MovePosition(playerOldPosition);
+        rb.velocity = playerOldVelocity;
+        rb.angularVelocity = playerOldAngularVelocity;
+        lockPosition.gameObject.SetActive(false);
     }
 
     private void StopAbility()
@@ -221,6 +257,20 @@ public class PlayerMovement : MonoBehaviour {
 
     private void UpdateTimeAbility()
     {
+        if (isPlayerOldPositionSet)
+        {
+            TimeSinceLock += Time.deltaTime;
+
+            if (TimeSinceLock >= 10)
+            {
+                TimeTravel();
+                isPlayerOldPositionSet = false;
+                TimeSinceLock = 0.0f;
+            }
+        }
+
+
+
         if (TimeCoolDown > 0)
         {
             TimeCoolDown -= Time.deltaTime;
@@ -298,6 +348,9 @@ public class PlayerMovement : MonoBehaviour {
         {
             //a hacky way to empty the power up meter, maybe fix later
         }
+
+        powerUpCollected();
+
     }
 
 }
