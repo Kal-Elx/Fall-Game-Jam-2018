@@ -24,6 +24,7 @@ public class PlayerRespawn : MonoBehaviour {
     private bool playerDied;
     private bool gameOver;
     private float timeSinceGameOver;
+    private AudioSource[] audioSource;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +32,7 @@ public class PlayerRespawn : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         gameOver = false;
         timeSinceGameOver = 0.0f;
+        audioSource = GetComponents<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -65,6 +67,7 @@ public class PlayerRespawn : MonoBehaviour {
     {
         if (playerDied)
         {
+            audioSource[0].Play();
             gameObject.GetComponent<PlayerMovement>().emptyPowerUp();
             rb.MovePosition(spawnPoint.position);
             rb.velocity = Vector3.zero;
