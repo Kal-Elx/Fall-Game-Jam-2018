@@ -103,14 +103,15 @@ public class PlayerMovement : MonoBehaviour {
     //Abilities
     private void DashAbility()
     {
-        if (DashCooldown <= 0.0f && ableToUsePowerUp())
+        if (DashCooldown <= 0.0f)
         {
             float moveHorizontal = Input.GetAxis("Horizontal " + gameObject.name);
             float moveVertical = Input.GetAxis("Vertical " + gameObject.name);
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-            if (!movement.Equals(Vector3.zero))
+            if (!movement.Equals(Vector3.zero) && ableToUsePowerUp())
             {
+                audioSource[3].Play();
                 rb.velocity += movement * dashSpeed;
                 DashCooldown = DashCooldownLength;
                 DashDuration = DashDurationLength;
@@ -132,6 +133,8 @@ public class PlayerMovement : MonoBehaviour {
             }
             else if (TimeCoolDown <= 0.0f && ableToUsePowerUp())
             {
+
+                audioSource[5].Play();
                 TimeCoolDown = TimeCooldownLength;
                 rb.MovePosition(playerOldPosition);
                 rb.velocity = playerOldVelocity;
@@ -145,6 +148,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (StopCooldown<=0.0f && ableToUsePowerUp())
         {
+            audioSource[4].Play();
             StopCooldown = StopCooldownLength;
             Opponent.GetComponent<PlayerMovement>().stop();
         }

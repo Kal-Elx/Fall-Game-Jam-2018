@@ -25,6 +25,7 @@ public class PlayerRespawn : MonoBehaviour {
     private bool gameOver;
     private float timeSinceGameOver;
     private AudioSource[] audioSource;
+    private bool hasCalledWonBefore = false;
 
 	// Use this for initialization
 	void Start () {
@@ -41,9 +42,10 @@ public class PlayerRespawn : MonoBehaviour {
         {
             playerDied = true;
         }
-        if (Deaths == DEATHS_TO_WIN)
+        if (Deaths == DEATHS_TO_WIN && !hasCalledWonBefore)
         {
             Opponent.GetComponent<PlayerRespawn>().Win();
+            hasCalledWonBefore = true;
         }
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -109,6 +111,7 @@ public class PlayerRespawn : MonoBehaviour {
             player = "Player 2";
         else
             player = "Player 1";
+        audioSource[6].Play();
         winText.SetText(player + " won the battle");
         gameOver = true;
     }
