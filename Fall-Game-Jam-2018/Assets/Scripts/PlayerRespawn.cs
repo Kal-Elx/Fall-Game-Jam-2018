@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerRespawn : MonoBehaviour {
 
     public Transform spawnPoint;
     public int Deaths = 0;
     public TextMeshProUGUI winText;
+
+    public Image life1;
+    public Image life2;
+    public Image life3;
+    public Image life4;
+    public Image life5;
 
     private static int DEATHS_TO_WIN = 5;
     private GameObject Opponent;
@@ -64,6 +71,31 @@ public class PlayerRespawn : MonoBehaviour {
             rb.angularVelocity = Vector3.zero;
             playerDied = false;
             Deaths++;
+
+            Image lifeToBeLost = null;
+            switch (Deaths)
+            {
+                case 1:
+                    lifeToBeLost = life5;
+                    break;
+                case 2:
+                    lifeToBeLost = life4;
+                    break;
+                case 3:
+                    lifeToBeLost = life3;
+                    break;
+                case 4:
+                    lifeToBeLost = life2;
+                    break;
+                case 5:
+                    lifeToBeLost = life1;
+                    break;
+            }
+
+            if (lifeToBeLost != null)
+            {
+                lifeToBeLost.gameObject.SetActive(false);
+            }
         }
     }
 
